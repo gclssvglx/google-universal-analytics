@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require_relative "google_universal_analytics"
+
+if ARGV.length != 1 
+    puts "usage: find_tracking_attributes application_name" 
+else
+    user = ENV['USER']
+    Dir.chdir("/Users/#{user}/govuk/#{ARGV[0]}")
+    puts Dir.pwd
+    finder = GoogleUniversalAnalytics::Finder.new(ARGV[0])
+    finder.create_csv
+end
